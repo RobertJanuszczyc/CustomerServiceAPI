@@ -2,7 +2,7 @@ package com.example.CustomerService;
 
 import com.example.CustomerService.repository.CustomerRepository;
 import com.example.CustomerService.repository.MenuRepository;
-import com.example.CustomerService.repository.TypeOfEventRepository;
+import com.example.CustomerService.repository.EventRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,7 +15,7 @@ public class ApiController {
 
     private final CustomerRepository customerRepository;
     private final MenuRepository menuRepository;
-    private final TypeOfEventRepository typeOfEventRepository;
+    private final EventRepository eventRepository;
 
     @GetMapping("/hello")
     public String sayHello() {
@@ -53,18 +53,18 @@ public class ApiController {
     }
 
     @GetMapping("/event")
-    public List<TypeOfEvent> getEvent() {
-        return typeOfEventRepository.findAll();
+    public List<Event> getEvent() {
+        return eventRepository.findAll();
     }
 
     @PostMapping("/event")
-    public TypeOfEvent createEvent(@RequestBody TypeOfEvent event) {
-        return typeOfEventRepository.save(event);
+    public Event createEvent(@RequestBody Event event) {
+        return eventRepository.save(event);
     }
 
     @DeleteMapping("/event")
     public void deleteEvent(@RequestParam long id) {
-        typeOfEventRepository.deleteById(id);
+        eventRepository.deleteById(id);
     }
 
 

@@ -10,7 +10,8 @@ public class Customer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    @Column(name = "customer_id")
+    private Long customerId;
     private String firstName;
     private String lastName;
     private String phoneNumber;
