@@ -1,9 +1,10 @@
 package com.example.CustomerService;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import lombok.Data;
-
-import java.util.List;
 
 @Data
 @Entity
@@ -16,12 +17,5 @@ public class Menu {
     private String description;
     private double price;
 
-    @OneToMany (
-            cascade = CascadeType.ALL
-    )
-    @JoinColumn(
-            name = "menu_id",
-            referencedColumnName = "id"
-    )
-    private List<Customer> customers;
+
 }

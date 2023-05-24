@@ -1,9 +1,10 @@
 package com.example.CustomerService;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import lombok.Data;
-
-import java.util.List;
 
 @Entity
 @Data
@@ -16,13 +17,6 @@ public class Event {
     private String eventName;
     private int qtyPeople;
 
-    @OneToMany(
-            cascade = CascadeType.ALL
-    )
-    @JoinColumn(
-            name = "event_id",
-            referencedColumnName = "id"
-    )
-    private List<Customer> customers;
+
 
 }
