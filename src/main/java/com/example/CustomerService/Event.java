@@ -10,8 +10,8 @@ public class Event {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
 
-    @Column(name = "event_id")
-    private Long eventId;
+
+    private Long id;
     private String eventName;
     private int qtyPeople;
 
