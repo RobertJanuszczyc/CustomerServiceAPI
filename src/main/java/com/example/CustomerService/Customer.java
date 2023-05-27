@@ -6,6 +6,12 @@ import lombok.Data;
 
 @Data
 @Entity
+@Table(
+        uniqueConstraints = @UniqueConstraint(
+                name = "uniqueEmail",
+                columnNames = "email"
+        )
+)
 public class Customer {
 
     @Id
@@ -17,12 +23,12 @@ public class Customer {
     private String email;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "event_id",
-    referencedColumnName = "id")
+    @JoinColumn(name = "event_name",
+    referencedColumnName = "eventName")
     private Event event;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "menu_id",
-            referencedColumnName = "id")
+    @JoinColumn(name = "menu_name",
+            referencedColumnName = "name")
     private Menu menu;
 }
