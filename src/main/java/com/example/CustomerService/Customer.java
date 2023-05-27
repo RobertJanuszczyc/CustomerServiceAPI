@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 
+
+
 @Data
 @Entity
 @Table(
@@ -17,9 +19,13 @@ public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
     private String firstName;
     private String lastName;
     private String phoneNumber;
+    @Column(
+            nullable = false
+    )
     private String email;
 
     @ManyToOne(cascade = CascadeType.ALL)

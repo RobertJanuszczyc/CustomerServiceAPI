@@ -29,12 +29,7 @@ public class ApiController {
 
     @PostMapping("/customers")
     public Customer createCustomer(@RequestBody Customer customer) {
-        List<Menu> listMenu = menuRepository.findAll();
-        for(int i =0; i<listMenu.size(); i++){
-            if(listMenu.get(i).equals(customer.getMenu())){
-                customer.setMenu(listMenu.get(i));
-            }
-        }
+
         return customerRepository.save(customer);
     }
 
