@@ -3,13 +3,16 @@ package com.example.CustomerService;
 import com.example.CustomerService.repository.CustomerRepository;
 import com.example.CustomerService.repository.EventRepository;
 import com.example.CustomerService.repository.MenuRepository;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
+@Validated
 public class ApiController {
 
 
@@ -28,9 +31,9 @@ public class ApiController {
     }
 
     @PostMapping("/customers")
-    public Customer createCustomer(@RequestBody Customer customer) {
+    public Customer createCustomer(@Valid @RequestBody Customer customer) {
 
-        return customerRepository.save(customer);
+        return customerRepository.save( customer);
     }
 
     @DeleteMapping("/customers")
