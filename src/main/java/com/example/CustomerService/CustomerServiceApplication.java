@@ -7,10 +7,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @EnableJpaRepositories(basePackages = "com.example.CustomerService.repository")
 @SpringBootApplication
 public class CustomerServiceApplication {
-
     public static void main(String[] args) {
         SpringApplication.run(CustomerServiceApplication.class, args);
     }
-
-
 }

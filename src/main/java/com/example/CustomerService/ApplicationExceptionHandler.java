@@ -11,7 +11,6 @@ import java.util.Map;
 
 @RestControllerAdvice
 public class ApplicationExceptionHandler {
-
     @ExceptionHandler(MethodArgumentNotValidException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public Map<String, String> handleInvalidArgument(MethodArgumentNotValidException exception) {
@@ -19,6 +18,5 @@ public class ApplicationExceptionHandler {
         exception.getBindingResult().getFieldErrors().forEach(error -> errorMap.put(error.getField(), error.getDefaultMessage()));
 
         return errorMap;
-
     }
 }

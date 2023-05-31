@@ -6,6 +6,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
@@ -18,12 +19,10 @@ public class Event {
     private Long id;
 
     @NotNull(message = "event name cannot be null")
-    private String eventName;
+    @NotEmpty(message = "event name cannot be empty")
+    private String name;
 
-    @NotNull(message = "number of people cannot be null")
     @Min(value = 50, message = "minimum number of people can be 50")
     @Max(value = 180, message = "maximum number of people can be 180")
     private int qtyPeople;
-
-
 }
