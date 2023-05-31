@@ -32,8 +32,7 @@ public class ApiController {
 
     @PostMapping("/customers")
     public Customer createCustomer(@Valid @RequestBody Customer customer) {
-
-        return customerRepository.save( customer);
+        return customerRepository.save(customer);
     }
 
     @DeleteMapping("/customers")
@@ -47,7 +46,7 @@ public class ApiController {
     }
 
     @PostMapping("/menu")
-    public Menu createMenu(@RequestBody Menu menu) {
+    public Menu createMenu(@RequestBody @Valid Menu menu) {
         return menuRepository.save(menu);
     }
 
@@ -70,8 +69,6 @@ public class ApiController {
     public void deleteEvent(@RequestParam long id) {
         eventRepository.deleteById(id);
     }
-
-
 
 
 }

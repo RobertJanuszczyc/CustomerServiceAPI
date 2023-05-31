@@ -13,7 +13,7 @@ import lombok.Data;
 public class Menu {
 
     @Id
-    @GeneratedValue( strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
     @NotNull(message = "menu name cannot be null")
@@ -21,10 +21,8 @@ public class Menu {
     @NotNull(message = "description cannot be null")
     private String description;
     @NotNull(message = "price cannot be null")
-    @Min(50)
+    @Min(value = 50, message = "price has to be bigger than 50")
     private double price;
-
-
 
 
 }
