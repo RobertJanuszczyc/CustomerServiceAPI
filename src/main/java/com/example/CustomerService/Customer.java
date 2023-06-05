@@ -1,5 +1,6 @@
 package com.example.CustomerService;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -12,11 +13,14 @@ import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.Future;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
+
+import java.util.Date;
 
 @Data
 @Entity
@@ -48,6 +52,10 @@ public class Customer {
     @NotEmpty(message = "email cannot be empty")
     @Email(message = "invalid email address")
     private String email;
+
+    @Future (message = "invalid date" )
+    @JsonFormat(pattern = "dd-mm-yyyy")
+    private Date date;
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @PrimaryKeyJoinColumn
