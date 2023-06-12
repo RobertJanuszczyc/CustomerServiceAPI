@@ -1,6 +1,7 @@
 package com.example.CustomerService;
 
 import com.example.CustomerService.repository.CustomerRepository;
+import com.example.CustomerService.repository.DishRepository;
 import com.example.CustomerService.repository.EventRepository;
 import com.example.CustomerService.repository.MenuRepository;
 import jakarta.validation.Valid;
@@ -23,6 +24,8 @@ public class ApiController {
     private final CustomerRepository customerRepository;
     private final MenuRepository menuRepository;
     private final EventRepository eventRepository;
+
+    private final DishRepository dishRepository;
 
     @GetMapping("/hello")
     public String sayHello() {
