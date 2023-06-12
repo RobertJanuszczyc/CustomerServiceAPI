@@ -76,4 +76,20 @@ public class ApiController {
     public void deleteEvent(@RequestParam long id) {
         eventRepository.deleteById(id);
     }
+
+    @GetMapping("/dishes")
+    public List<Dish> getDish() {
+        return dishRepository.findAll();
+    }
+
+    @PostMapping("/dishes")
+    public Dish createDish(@RequestBody Dish dish) {
+        return dishRepository.save(dish);
+    }
+
+    @DeleteMapping("/dishes")
+    public void deleteDish(@RequestParam long id) {
+        dishRepository.deleteById(id);
+    }
+
 }
