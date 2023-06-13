@@ -18,7 +18,7 @@ public class Event {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @NotNull(message = "event name cannot be null")
+    @NotNull
     @NotEmpty(message = "event name cannot be empty")
     private String name;
 

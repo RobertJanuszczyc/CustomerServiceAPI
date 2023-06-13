@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
+import java.util.Arrays;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -24,7 +24,6 @@ public class ApiController {
     private final CustomerRepository customerRepository;
     private final MenuRepository menuRepository;
     private final EventRepository eventRepository;
-
     private final DishRepository dishRepository;
 
     @GetMapping("/hello")
@@ -92,4 +91,13 @@ public class ApiController {
         dishRepository.deleteById(id);
     }
 
+    @GetMapping("/dishes/{sumOfPrices}")
+    public double sumOfPrices(@RequestParam Long[] ids) {
+        double sum = 0;
+        List<Dish> listOfDishes = dishRepository.findAllById(Arrays.asList(ids));
+        for (int i = 0; i < listOfDishes.size(); i++) {
+            sum += listOfDishes.get(i).getPrice();
+        }
+        return sum;
+    }
 }

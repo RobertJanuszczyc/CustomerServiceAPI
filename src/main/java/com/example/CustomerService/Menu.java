@@ -21,10 +21,9 @@ public class Menu {
     @NotEmpty(message = "menu name cannot be empty")
     private String name;
 
-    @NotNull(message = "description cannot be null")
-    @NotEmpty(message = "description name cannot be empty")
-    private String description;
 
     @Min(value = 50, message = "price has to be bigger than 50")
     private double price;
+
+
 }
