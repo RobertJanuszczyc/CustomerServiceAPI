@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import java.util.Arrays;
+
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -36,12 +36,12 @@ public class ApiController {
         return customerRepository.findAll();
     }
 
-    @PostMapping("/customers")
+    @PostMapping("/customer")
     public Customer createCustomer(@Valid @RequestBody Customer customer) {
         return customerRepository.save(customer);
     }
 
-    @DeleteMapping("/customers")
+    @DeleteMapping("/customer")
     public void deleteCustomer(@RequestParam Long id) {
         customerRepository.deleteById(id);
     }
@@ -52,7 +52,13 @@ public class ApiController {
     }
 
     @PostMapping("/menu")
-    public Menu createMenu(@RequestBody @Valid Menu menu) {
+    public Menu createMenu(@RequestParam @Valid String name, @RequestParam List<Long> ids) {
+        Menu menu = new Menu();
+        double price = sumOfPrices(ids);
+        menu.setName(name);
+        menu.setPrice(price);
+        List<Dish> dishes = dishRepository.findAllById(ids);
+        menu.setDishes(dishes);
         return menuRepository.save(menu);
     }
 
@@ -81,23 +87,24 @@ public class ApiController {
         return dishRepository.findAll();
     }
 
-    @PostMapping("/dishes")
+    @PostMapping("/dish")
     public Dish createDish(@RequestBody Dish dish) {
         return dishRepository.save(dish);
     }
 
-    @DeleteMapping("/dishes")
+    @DeleteMapping("/dish")
     public void deleteDish(@RequestParam long id) {
         dishRepository.deleteById(id);
     }
 
-    @GetMapping("/dishes/{sumOfPrices}")
-    public double sumOfPrices(@RequestParam Long[] ids) {
+    @GetMapping("/dish/prices")
+    public double sumOfPrices(@RequestParam List<Long> ids) {
         double sum = 0;
-        List<Dish> listOfDishes = dishRepository.findAllById(Arrays.asList(ids));
-        for (int i = 0; i < listOfDishes.size(); i++) {
-            sum += listOfDishes.get(i).getPrice();
+        List<Dish> dishes = dishRepository.findAllById(ids);
+        for (Dish dish : dishes){
+            sum+= dish.getPrice();
         }
+
         return sum;
     }
 }
